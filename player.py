@@ -1,20 +1,21 @@
 import pygame
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos):
+    def __init__(self, pos, tiles):
         super().__init__()
         self.image = pygame.Surface((32, 64))
+        self.tiles = tiles
         self.image.fill('red')
         self.rect = self.image.get_rect(topleft=pos)
         self.direction = pygame.math.Vector2(0, 0)
         self.velocity = pygame.math.Vector2(0, 0)
         self.gravity = 1
-        self.jump_power = -20  # Adjust as needed
+        self.jump_power = -20  
         self.on_ground = False
 
     def apply_gravity(self):
         self.velocity.y += self.gravity
-        if self.velocity.y > 10:  # Terminal velocity, adjust as needed
+        if self.velocity.y > 10:  
             self.velocity.y = 10
 
     def jump(self):
@@ -40,7 +41,7 @@ class Player(pygame.sprite.Sprite):
 
         self.apply_gravity()
 
-        self.velocity.x = self.direction.x * 5  # Adjust movement speed as needed
+        self.velocity.x = self.direction.x * 5  
         self.rect.x += self.velocity.x
 
         self.rect.y += self.velocity.y
