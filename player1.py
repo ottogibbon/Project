@@ -49,7 +49,7 @@ class Player(pygame.sprite.Sprite):
         if collisions:
             self.on_ground = True
             self.velocity.y = 0
-            self.rect.y = collisions[0].rect.top
+            self.rect.y=collisions[0].rect.top - self.rect.height
 
     def draw(self, surface):
         surface.blit(self.image, self.rect.topleft)
