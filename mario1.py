@@ -44,7 +44,7 @@ while True:
         camera_offset = 0  # Don't scroll beyond the left edge of the level
 
     # Draw
-    screen.fill((0, 0, 0))  # Fill the screen with black
+    screen.fill((255, 255, 255))  # Fill the screen with black
     for tile in game_level.tiles:
         screen.blit(tile.image, (tile.rect.x + camera_offset, tile.rect.y))  # Draw the level tiles with camera offset
     screen.blit(player.image, (player.rect.x + camera_offset, player.rect.y))  # Draw the player with camera offset
