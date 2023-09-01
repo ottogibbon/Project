@@ -15,12 +15,13 @@ class Player(pygame.sprite.Sprite):
         self.load_images()
 
     def load_images(self):
+        
         self.walking_frames = [
-            pygame.image.load('mario_walk_frame_1.png'),
-            pygame.image.load('mario_walk_frame_2.png'),
-            pygame.image.load('mario_walk_frame_3.png')
+            pygame.image.load('mario_walk_frame_1_transparent.png'),
+            pygame.image.load('mario_walk_frame_2_transparent.png'),
+            pygame.image.load('mario_walk_frame_3_transparent.png')
         ]
-        self.current_frame = 0
+
         self.animation_counter = 0  # Initialize animation counter in __init__
 
 
