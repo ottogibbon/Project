@@ -18,10 +18,7 @@ clock = pygame.time.Clock()
 
 # Create instances
 game_level = Level(level_map, screen)  # Initialize level with screen surface
-player = Player((100, screen_height // 2), None)  
-
-# Camera setup
-camera_position = 0
+player = Player((100, screen_height // 2), game_level.tiles)  # Passed game_level.tiles for collision detection
 
 # Main game loop
 while True:
@@ -32,13 +29,8 @@ while True:
             sys.exit()
 
     # Update
-    
-    print('Debug in main.py - game_level.tiles:', game_level.tiles)
     player.update(game_level.tiles)  # Passed game_level.tiles for collision detection
-    game_level.run(camera_position)
-
-    # Camera updates based on player's x-coordinate
-    camera_position = -player.rect.x + screen_width // 2
+    game_level.run()
 
     # Draw
     screen.fill((0, 0, 0))  # Fill the screen with black
@@ -50,7 +42,6 @@ while True:
 
     # Cap the frame rate
     clock.tick(60)
-
 
 
 	
