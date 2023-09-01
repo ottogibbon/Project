@@ -1,9 +1,9 @@
 import pygame
 import sys
-from setting import tile_size, level_map
-from level import Level
-from player import Player
-from enemy import Enemy
+from setting1 import tile_size, level_map
+from level1 import Level
+from player1 import Player
+from enemy1 import Enemy
 
 # Initialize Pygame
 pygame.init()
@@ -18,7 +18,7 @@ clock = pygame.time.Clock()
 
 # Create instances
 game_level = Level(level_map, screen)  # Initialize level with screen surface
-player = Player((100, screen_height // 2), game_level.tiles)  # Passed game_level.tiles for collision detection
+player = Player((100, screen_height // 2), game_level.tiles)  
 
 # Main game loop
 while True:

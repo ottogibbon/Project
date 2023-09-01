@@ -4,18 +4,18 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, pos, tiles):
         super().__init__()
         self.image = pygame.Surface((32, 64))
-        self.tiles = tiles
-        self.image.fill('red')
+        self.image.fill((255, 0, 0))  # Set player color to red (RGB tuple)
         self.rect = self.image.get_rect(topleft=pos)
+        self.tiles = tiles  # Reference to the tiles in the level
         self.direction = pygame.math.Vector2(0, 0)
         self.velocity = pygame.math.Vector2(0, 0)
         self.gravity = 1
-        self.jump_power = -20  
+        self.jump_power = -20
         self.on_ground = False
 
     def apply_gravity(self):
         self.velocity.y += self.gravity
-        if self.velocity.y > 10:  
+        if self.velocity.y > 10:
             self.velocity.y = 10
 
     def jump(self):
@@ -36,14 +36,12 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_SPACE]:
             self.jump()
 
-    def update(self):
+    def update(self, tiles):  # Added tiles parameter for collision detection
         self.get_input()
-
         self.apply_gravity()
 
-        self.velocity.x = self.direction.x * 5  
+        self.velocity.x = self.direction.x * 5
         self.rect.x += self.velocity.x
-
         self.rect.y += self.velocity.y
 
         # Collision with the ground (assuming tiles is a sprite group containing tiles)

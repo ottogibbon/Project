@@ -1,14 +1,14 @@
 import pygame
-from setting import tile_size
+from setting1 import tile_size
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, pos, tiles):
         super().__init__()
         self.image = pygame.Surface((tile_size, tile_size))
-        self.image.fill((255, 0, 0))
+        self.image.fill((255, 0, 0))  # Set enemy color to red (RGB tuple)
         self.rect = self.image.get_rect(topleft=pos)
-        self.direction = pygame.math.Vector2(1, 0)  # Move to the right initially
-        self.velocity = pygame.math.Vector2(2, 0)  # Speed of the enemy
+        self.direction = pygame.math.Vector2(1, 0)  # Initial movement direction to the right
+        self.velocity = pygame.math.Vector2(2, 0)  # Set the speed of the enemy
         self.tiles = tiles  # Reference to the tiles in the level
 
     def update(self):
@@ -20,4 +20,3 @@ class Enemy(pygame.sprite.Sprite):
         for tile in self.tiles:
             if self.rect.colliderect(tile):
                 self.direction.x *= -1  # Reverse direction upon collision
-
