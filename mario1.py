@@ -28,20 +28,28 @@ while True:
             pygame.quit()
             sys.exit()
 
-    # Update
+    
+    # Check if player is off the map and quit the game if so
+    if player.rect.x < 0 or player.rect.x > (len(level_map[0]) * tile_size) or player.rect.y > screen_height:
+        pygame.quit()
+        sys.exit()
+# Update
     player.update(game_level.tiles)  # Passed game_level.tiles for collision detection
     game_level.run()
 
+    
+    # Scrolling camera logic
+    camera_offset = -player.rect.x + screen_width // 2  # Keep player in the center
+    if camera_offset > 0:
+        camera_offset = 0  # Don't scroll beyond the left edge of the level
+
     # Draw
     screen.fill((0, 0, 0))  # Fill the screen with black
-    game_level.tiles.draw(screen)  # Draw the level tiles
-    screen.blit(player.image, player.rect)  # Draw the player
-
-    # Refresh screen
+    for tile in game_level.tiles:
+        screen.blit(tile.image, (tile.rect.x + camera_offset, tile.rect.y))  # Draw the level tiles with camera offset
+    screen.blit(player.image, (player.rect.x + camera_offset, player.rect.y))  # Draw the player with camera offset
+# Refresh screen
     pygame.display.update()
 
     # Cap the frame rate
     clock.tick(60)
-
-
-	
