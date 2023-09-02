@@ -21,12 +21,12 @@ class Player(pygame.sprite.Sprite):
     
     def load_images(self):
         # Load new Mario sprites
-        self.stand_frame = pygame.image.load('stand.png')
-        self.jump_frame = pygame.image.load('jump.png')
+        self.stand_frame = pygame.image.load('stand_resized.png')
+        self.jump_frame = pygame.image.load('jump_resized.png')
         self.walking_frames = [
-            pygame.image.load('walk1.png'),
-            pygame.image.load('walk2.png'),
-            pygame.image.load('walk3.png')
+            pygame.image.load('walk1_resized.png'),
+            pygame.image.load('walk2_resized.png'),
+            pygame.image.load('walk3_resized.png')
         ]
         self.current_frame = 0
         self.animation_counter = 0

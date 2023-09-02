@@ -1,34 +1,38 @@
 import pygame
-from block1 import Block  
-from player1 import Player
-from setting1  import tile_size
+from block1 import Block  # Import Block class from block1.py
+from player1 import Player  # Import Player class from player1.py
+from setting1 import tile_size  # Import tile_size from setting1.py
+
+# Load new scenery sprites (adjust these paths as needed)
+ground_sprite = pygame.image.load('scenery_ground.png')
+brick_sprite = pygame.image.load('scenery_brick.png')
+question_block_sprite = pygame.image.load('scenery_question_block.png')
+pipe_top_sprite = pygame.image.load('scenery_pipe_top.png')
+pipe_bottom_sprite = pygame.image.load('scenery_pipe_bottom.png')
 
 class Level:
-    def __init__(self, level_data, surface):
-        self.display_surface = surface
+    def __init__(self, level_map, screen):
+        self.level_map = level_map
+        self.screen = screen
         self.tiles = pygame.sprite.Group()
-        self.player = pygame.sprite.GroupSingle()
-        self.setup_level(level_data)
-
-    def setup_level(self, layout):
-        for row_index, row in enumerate(layout):
-            for col_index, block in enumerate(row):
-                if block == 'X':
-                    x = col_index * tile_size
-                    y = row_index * tile_size
-                    tile = Block((x, y))  
-                    self.tiles.add(tile)
-                if block == 'P':
-                    x = col_index * tile_size
-                    y = row_index * tile_size
-                    player_sprite = Player((x, y), self.tiles)
-                    self.player.add(player_sprite)
-
-    def run(self):
-        self.tiles.draw(self.display_surface)
-        self.tiles.update()  
-        self.player.update(self.tiles)
-        self.player.draw(self.display_surface)
-
-
-    
+        
+        # Create the level layout based on the level_map
+        tile_height, tile_width = ground_sprite.get_height(), ground_sprite.get_width()
+        for row_idx, row in enumerate(self.level_map):
+            for col_idx, tile_type in enumerate(row):
+                x, y = col_idx * tile_width, row_idx * tile_height
+                
+                if tile_type == 'G':
+                    tile = tile(ground_sprite, x, y)
+                elif tile_type == 'B':
+                    tile = tile(brick_sprite, x, y)
+                elif tile_type == 'Q':
+                    tile = tile(question_block_sprite, x, y)
+                elif tile_type == 'T':
+                    tile = tile(pipe_top_sprite, x, y)
+                elif tile_type == 'P':
+                    tile = tile(pipe_bottom_sprite, x, y)
+                else:
+                    continue
+                
+                self.tiles.add(tile)
