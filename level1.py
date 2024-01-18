@@ -3,7 +3,7 @@ from block1 import Block  # Import Block class from block1.py
 from player1 import Player  # Import Player class from player1.py
 from setting1 import tile_size  # Import tile_size from setting1.py
 
-# Load new scenery sprites (adjust these paths as needed)
+# Load new scenery sprites 
 ground_sprite = pygame.image.load('scenery_ground.png')
 brick_sprite = pygame.image.load('scenery_brick.png')
 question_block_sprite = pygame.image.load('scenery_question_block.png')
